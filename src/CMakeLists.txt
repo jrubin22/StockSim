@@ -1,9 +1,10 @@
 #CMakeLists.txt src
 
-set(LIBRARY_NAME src)
+set(LIBRARY_NAME srcLib)
 #src files
 add_library(${LIBRARY_NAME}
     src1.cpp
+    Portfolio.cpp
 )
 target_compile_definitions(${LIBRARY_NAME} PRIVATE)
 
