@@ -1,10 +1,11 @@
 #include <iostream>
 #include "Portfolio.h"
+#include "Stock.h"
+#include "Exchange.h"
 
 int main()
 {
     bool openFlag = true;
-    std::cout<<"Hello World"<<std::endl;
     std::cout<< "Enter Name: "<<std::endl;
     std::string name;
     std::cin >> name;
@@ -22,8 +23,24 @@ int main()
     std::string tick;
     int amt = 0;
 
+    std::string StockTick = "NFLX";
+    Stock Netflix(StockTick, 400);
+    StockTick = "AAPL";
+    Stock Apple(StockTick, 175);
+    StockTick="GME";
+    Stock Gamestop(StockTick, 25);
+    Exchange E;
+    Exchange* pE = &E;
+    pE->insertStock(&Netflix);
+    pE->insertStock(&Apple);
+    pE->insertStock(&Gamestop);
+    Stock * curStock = nullptr;
+
+    newPort->setExchange(pE);
+
     while(openFlag)
     {
+        curStock == nullptr;
         std::cout << "What operation would you like to do with " << name <<std::endl;
         std::cout << "Buy (b), Sell (s), View (v), Exit (e) " << std::endl;
         std::cin >> op;
@@ -32,7 +49,14 @@ int main()
         {
             std::cout << "What Ticker Would you like to buy?" << std::endl;
             std::cin >> tick;
-            std::cout << "How much of " << tick << " would you like to buy?" << std::endl; 
+            curStock = pE->getStock(tick);
+            if (curStock == nullptr)
+            {
+                std::cout << "That stock is not on the exchange, please try again" << std::endl;
+                continue;
+            }
+            std::cout << "How much of " << tick << " would you like to buy?" << std::endl;             
+            std::cout << "Cost of " << tick << " is: $" << curStock->getValue()<< std::endl;
             // TODO "You can afford x amt";
             std::cin >> amt;
             while (std::cin.fail())
@@ -49,7 +73,14 @@ int main()
         {
             std::cout << "What Ticker Would you like to sell?" << std::endl;
             std::cin >> tick;
-            std::cout << "How much of " << tick << " would you like to sell?" << std::endl; 
+            curStock = pE->getStock(tick);
+            if (curStock == nullptr)
+            {
+                std::cout << "That stock is not on the exchange, please try again" << std::endl;
+                continue;
+            }
+            std::cout << "How much of " << tick << " would you like to sell?" << std::endl;             
+            std::cout << "Cost of " << tick << " is: $" << curStock->getValue()<< std::endl;
             // TODO "You can afford x amt";
             std::cin >> amt;
             while (std::cin.fail())
@@ -64,7 +95,7 @@ int main()
         }
         else if (op == "View" || op == "view" || op == "v")
         {
-            //std::cout << "Total Account Value is: " << getTotalValue()<< std::endl;
+            std::cout << "Total Account Value is: " << newPort->getTotalValue()<< std::endl;
             std::cout << "Total Cash is: " << newPort->getCash()<< std::endl;
             newPort->viewStocks();
             continue;
