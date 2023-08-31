@@ -3,7 +3,6 @@
 set(LIBRARY_NAME srcLib)
 #src files
 add_library(${LIBRARY_NAME}
-    src1.cpp
     Portfolio.cpp
     Stock.cpp
     Exchange.cpp

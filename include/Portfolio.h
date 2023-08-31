@@ -8,6 +8,7 @@
 
 //Headers
 // #include "stock.h"
+#include "Exchange.h"
 
 class Portfolio
 {
@@ -17,9 +18,12 @@ private:
     float       totValue;
     std::string name;
     std::map <std::string,int> stocks;
+    Exchange* pExch;
+    float calculateTotVal();
      
 public:
     Portfolio(int id, std::string n);
+    Portfolio(int id, std::string n, Exchange* ex);
     ~Portfolio();
     int Buy (std::string ticker, int amt );
     int Sell(std::string ticker,  int amt );
@@ -30,5 +34,7 @@ public:
     float getTotalValue();
     int viewStocks();
     std::string getName();
+    Exchange * getExchange();
+    int setExchange(Exchange* ex);
 };
 #endif // PORTFOLIO_H_
