@@ -1,6 +1,23 @@
 //Implementation for Stock
+#include <iostream>
 #include "Stock.h"
 
+
+Stock::Stock(std::string tick, int val):
+ticker(tick),
+value(val),
+lastValue(0.0f),
+closeValue(0.0f),
+openValue(0.0f),
+dayChange(0.0f),
+percentChange(0.0f)
+{
+};
+
+Stock::~Stock()
+{
+    std::cout << "Destroyed Stock" << std::endl;
+}
 
 float Stock::getValue()
 {
@@ -8,7 +25,7 @@ float Stock::getValue()
 }
 int   Stock::setValue(float val)
 {
-    if (val => 0.0f)
+    if (val >= 0.0f)
     {
         value = val;
         return 0;
@@ -26,7 +43,8 @@ float Stock::getDayChange()
 }
 int   Stock::setDayChange(float val)
 {
-    if (value + val => 0.0f)
+    //TODO Change this to openValue + val
+    if (value + val >= 0.0f)
     {
         dayChange = val;
         return 0;

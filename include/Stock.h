@@ -10,6 +10,9 @@ class Stock
 private:
     std::string ticker;
     float value;
+    float lastValue;
+    float closeValue;
+    float openValue;
     float dayChange;
     float percentChange; 
 public:
@@ -22,19 +25,8 @@ public:
     int   setDayChange(float val);
     float getPercentChange();
     int   setPercentChange(float val);
+    std::string getTicker(){ return ticker; }
 
 };
-
-Stock::Stock(std::string tick, int val):
-ticker(tick),
-value(val),
-dayChange(0),
-percentChange(0)
-{
-};
-
-Stock::~Stock()
-{
-}
 
 #endif

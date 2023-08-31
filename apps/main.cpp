@@ -1,10 +1,11 @@
 #include <iostream>
 #include "Portfolio.h"
+#include "Stock.h"
+#include "Exchange.h"
 
 int main()
 {
     bool openFlag = true;
-    std::cout<<"Hello World"<<std::endl;
     std::cout<< "Enter Name: "<<std::endl;
     std::string name;
     std::cin >> name;
@@ -21,6 +22,17 @@ int main()
     std::string op;
     std::string tick;
     int amt = 0;
+
+    std::string StockTick = "NFLX";
+    Stock Netflix(StockTick, 400);
+    StockTick = "AAPL";
+    Stock Apple(StockTick, 175);
+    StockTick="GME";
+    Stock Gamestop(StockTick, 25);
+    Exchange E;
+    E.insertStock(&Netflix);
+    E.insertStock(&Apple);
+    E.insertStock(&Gamestop);
 
     while(openFlag)
     {
