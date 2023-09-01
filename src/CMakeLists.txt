@@ -6,6 +6,7 @@ add_library(${LIBRARY_NAME}
     Portfolio.cpp
     Stock.cpp
     Exchange.cpp
+    SQLiteUtils.cpp
 )
 target_compile_definitions(${LIBRARY_NAME} PRIVATE)
 
