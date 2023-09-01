@@ -28,6 +28,7 @@ public:
     int Buy (std::string ticker, int amt );
     int Sell(std::string ticker,  int amt );
     //int getStocks(std::string ticker);
+    int getuuid(){ return uuid; }
     int getStockAmt(std::string ticker);
     int setCash(float cash);
     float getCash();

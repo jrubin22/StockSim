@@ -12,6 +12,7 @@ target_include_directories(${APP_NAME} PRIVATE
 
 target_link_libraries(${APP_NAME} PRIVATE
 srcLib
+-lsqlite3
 -lstdc++
 )
 

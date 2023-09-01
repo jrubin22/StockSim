@@ -16,6 +16,7 @@ target_include_directories(${LIBRARY_NAME} PRIVATE
 
 target_link_libraries(${LIBRARY_NAME} PRIVATE
 -lstdc++
+-lsqlite3
 )
 
 set_target_properties(${LIBRARY_NAME} PROPERTIES
