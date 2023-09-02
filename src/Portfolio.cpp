@@ -184,12 +184,30 @@ int Portfolio::viewStocks()
     return 0;
 }
 
+int Portfolio::getStocks(std::map<std::string,int>& stockList)
+{
+    std::map<std::string, int>::iterator it = stocks.begin();
+    while (it != stocks.end())
+    {
+        stockList[it->first] = it->second;
+        it++;
+    }
+    return 0;
+}
+
 int Portfolio::getStockAmt(std::string ticker)
 {
     if (stocks.find(ticker) == stocks.end())
         return 0;
     return stocks[ticker];
 }
+
+int Portfolio::setStockAmt(std::string ticker, int amt)
+{
+    stocks[ticker] = amt;
+    return 0;
+}
+
 
 Exchange * Portfolio::getExchange()
 {

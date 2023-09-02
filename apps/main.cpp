@@ -50,10 +50,15 @@ int main()
     Stock * curStock = nullptr;
 
     newPort->setExchange(pE);
+    writePortfolioToDB(db, newPort);
+    getStocksFromDB(db,newPort);
+    writeStocksToDB(db, newPort);
+
 
     while(openFlag)
     {
         writePortfolioToDB(db, newPort);
+        writeStocksToDB(db, newPort);
         curStock == nullptr;
         std::cout << "What operation would you like to do with " << name <<std::endl;
         std::cout << "Buy (b), Sell (s), View (v), Exit (e) " << std::endl;
