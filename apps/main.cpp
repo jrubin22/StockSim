@@ -1,23 +1,36 @@
 #include <iostream>
+#include <sqlite3.h>
+
+#include "SQLiteUtils.h"
 #include "Portfolio.h"
 #include "Stock.h"
 #include "Exchange.h"
 
+
+
 int main()
 {
+    sqlite3* db;
+    sqlite3_open("db/mydb.db", &db);
+    std::string query = "SELECT * FROM port";
+    dbQuery(query.c_str(), db);
     bool openFlag = true;
     std::cout<< "Enter Name: "<<std::endl;
     std::string name;
     std::cin >> name;
-    Portfolio* newPort = nullptr;
-    Portfolio port = Portfolio(10,name);
-    newPort = &port;
+    Portfolio* newPort = getPortfolioFromDB(db, name);
+    //Portfolio port = Portfolio(10,name);
+    //newPort = &port;
     std::string N = newPort->getName();
     std::cout << "Name is: " << N << std::endl;
-    std::cout << "Enter Default Amount: " << std::endl;
-    float val;
-    std::cin  >> val;
-    newPort->setCash(val);
+    if (newPort->getCash() == 0.0f)
+    {
+        //std::cout << "Default Cash is: "<<newPort->getCash()<<std::endl;
+        std::cout << "Enter Default Amount: " << std::endl;
+        float val;
+        std::cin  >> val;
+        newPort->setCash(val);
+    }
     std::cout << "Amount of cash is: " << newPort->getCash() << std::endl;
     std::string op;
     std::string tick;
@@ -37,9 +50,15 @@ int main()
     Stock * curStock = nullptr;
 
     newPort->setExchange(pE);
+    writePortfolioToDB(db, newPort);
+    getStocksFromDB(db,newPort);
+    writeStocksToDB(db, newPort);
+
 
     while(openFlag)
     {
+        writePortfolioToDB(db, newPort);
+        writeStocksToDB(db, newPort);
         curStock == nullptr;
         std::cout << "What operation would you like to do with " << name <<std::endl;
         std::cout << "Buy (b), Sell (s), View (v), Exit (e) " << std::endl;
@@ -111,6 +130,8 @@ int main()
             continue;
         }
     }
+
+
 
     return 0;
 }

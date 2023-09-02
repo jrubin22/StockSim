@@ -28,11 +28,14 @@ public:
     int Buy (std::string ticker, int amt );
     int Sell(std::string ticker,  int amt );
     //int getStocks(std::string ticker);
+    int getuuid(){ return uuid; }
     int getStockAmt(std::string ticker);
+    int setStockAmt(std::string ticker, int amt);
     int setCash(float cash);
     float getCash();
     float getTotalValue();
     int viewStocks();
+    int getStocks(std::map<std::string,int>& stockList);
     std::string getName();
     Exchange * getExchange();
     int setExchange(Exchange* ex);

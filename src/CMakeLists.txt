@@ -6,6 +6,7 @@ add_library(${LIBRARY_NAME}
     Portfolio.cpp
     Stock.cpp
     Exchange.cpp
+    SQLiteUtils.cpp
 )
 target_compile_definitions(${LIBRARY_NAME} PRIVATE)
 
@@ -16,6 +17,7 @@ target_include_directories(${LIBRARY_NAME} PRIVATE
 
 target_link_libraries(${LIBRARY_NAME} PRIVATE
 -lstdc++
+-lsqlite3
 )
 
 set_target_properties(${LIBRARY_NAME} PROPERTIES
