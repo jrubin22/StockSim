@@ -36,17 +36,17 @@ int main()
     std::string tick;
     int amt = 0;
 
-    std::string StockTick = "NFLX";
-    Stock Netflix(StockTick, 400);
-    StockTick = "AAPL";
-    Stock Apple(StockTick, 175);
-    StockTick="GME";
-    Stock Gamestop(StockTick, 25);
-    Exchange E;
+    // std::string StockTick = "NFLX";
+    // Stock Netflix(StockTick, 400);
+    // StockTick = "AAPL";
+    // Stock Apple(StockTick, 175);
+    // StockTick="GME";
+    // Stock Gamestop(StockTick, 25);
+    Exchange E("db/tickers.csv");
     Exchange* pE = &E;
-    pE->insertStock(&Netflix);
-    pE->insertStock(&Apple);
-    pE->insertStock(&Gamestop);
+    // pE->insertStock(&Netflix);
+    // pE->insertStock(&Apple);
+    // pE->insertStock(&Gamestop);
     Stock * curStock = nullptr;
 
     newPort->setExchange(pE);

@@ -1,19 +1,49 @@
 #include <iostream>
+#include <fstream>
+#include <vector>
 #include "Exchange.h"
 #include "Stock.h"
 
+static std::vector<std::string> loadTickers(const std::string& fileName)
+{
+    std::vector<std::string> ticks;
+    std::ifstream file(fileName);
 
+    std::string line;
+    std::getline(file, line);
+
+    while(std::getline(file,line))
+    {
+        ticks.push_back(line);
+    }
+    return ticks;
+}
 
 Exchange::Exchange()
 {
     std::cout << "Created Exchange" << std::endl;
-}
+};
+
+Exchange::Exchange(const std::string& TickerList)
+{
+    std::cout << "Created Exchange with data from " << TickerList << std::endl;
+    std::vector<std::string> tickers = loadTickers(TickerList);
+    Stock * curStock;
+    float val = 5.0f;
+    for (const auto& ticker : tickers)
+    {
+        //TODO Get value of the stock
+        curStock = new Stock(ticker, val);
+        insertStock(curStock);
+        val += 5.0f;
+    }
+};
 
 
 Exchange::~Exchange()
 {
     std::cout << "Destroyed Exchange" << std::endl;
-}
+};
 
 
 

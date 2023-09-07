@@ -3,7 +3,7 @@
 #include "Stock.h"
 
 
-Stock::Stock(std::string tick, int val):
+Stock::Stock(std::string tick, float val):
 ticker(tick),
 value(val),
 lastValue(0.0f),
