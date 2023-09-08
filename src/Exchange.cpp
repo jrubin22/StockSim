@@ -1,19 +1,56 @@
 #include <iostream>
+#include <fstream>
+#include <vector>
+#include <random>
 #include "Exchange.h"
 #include "Stock.h"
 
+static std::vector<std::string> loadTickers(const std::string& fileName)
+{
+    std::vector<std::string> ticks;
+    std::ifstream file(fileName);
 
+    std::string line;
+    std::getline(file, line);
+
+    while(std::getline(file,line))
+    {
+        ticks.push_back(line);
+    }
+    return ticks;
+}
 
 Exchange::Exchange()
 {
     std::cout << "Created Exchange" << std::endl;
-}
+};
+
+Exchange::Exchange(const std::string& TickerList)
+{
+    std::cout << "Created Exchange with data from " << TickerList << std::endl;
+    std::vector<std::string> tickers = loadTickers(TickerList);
+    Stock * curStock;
+    //Use random until we have real values
+    std::random_device rd;
+    //initialize random gen 
+    std::mt19937 gen(rd());
+    float val;
+    for (const auto& ticker : tickers)
+    {
+        //TODO Get value of the stock
+        std::uniform_real_distribution<> dist(0.0f,500.0f);
+        val = dist(gen);
+        curStock = new Stock(ticker, val);
+        insertStock(curStock);
+        val += 5.0f;
+    }
+};
 
 
 Exchange::~Exchange()
 {
     std::cout << "Destroyed Exchange" << std::endl;
-}
+};
 
 
 

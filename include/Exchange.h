@@ -10,6 +10,7 @@ private:
     std::map<std::string,Stock*> stocks;
 public:
     Exchange();
+    Exchange(const std::string& TickerList);
     ~Exchange();
     Stock* getStock(std::string tick);
     int    insertStock(Stock* stock);

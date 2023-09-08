@@ -23,3 +23,8 @@ Then you can enter your name and you're ready to go
 cmake
 ninja-build
 libsqlite3-dev
+
+### Optional
+If you want to update a list of tickers:
+pandas
+

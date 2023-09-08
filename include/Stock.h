@@ -16,7 +16,7 @@ private:
     float dayChange;
     float percentChange; 
 public:
-    Stock(std::string tick, int val);
+    Stock(std::string tick, float val);
     ~Stock();
 
     float getValue();
